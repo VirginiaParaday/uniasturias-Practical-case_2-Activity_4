@@ -6,7 +6,8 @@ Este script genera un conjunto de fragmentos jurídicos simulados
 que serán utilizados para crear embeddings semánticos y realizar
 el agrupamiento por similitud temática.
 
-terminal: python src/generar_dataset.py
+Terminal:
+python src/generar_dataset.py
 """
 
 import os
@@ -53,77 +54,100 @@ penal = [
 
 
 # ==========================================================
-# Construcción del dataset
+# Generación del dataset
 # ==========================================================
 
-fragmentos = []
+def generar_dataset():
+    """
+    Genera un conjunto de fragmentos jurídicos clasificados
+    por temática y los almacena en un archivo CSV.
 
-for texto in laboral:
-    fragmentos.append({
-        "tema": "Laboral",
-        "texto": texto
-    })
+    Retorna:
+        pandas.DataFrame:
+            DataFrame con las columnas:
+            - tema
+            - texto
+    """
 
-for texto in civil:
-    fragmentos.append({
-        "tema": "Civil",
-        "texto": texto
-    })
+    fragmentos = []
 
-for texto in familia:
-    fragmentos.append({
-        "tema": "Familia",
-        "texto": texto
-    })
+    # ------------------------------------------------------
 
-for texto in penal:
-    fragmentos.append({
-        "tema": "Penal",
-        "texto": texto
-    })
+    for texto in laboral:
+        fragmentos.append({
+            "tema": "Laboral",
+            "texto": texto
+        })
+
+    for texto in civil:
+        fragmentos.append({
+            "tema": "Civil",
+            "texto": texto
+        })
+
+    for texto in familia:
+        fragmentos.append({
+            "tema": "Familia",
+            "texto": texto
+        })
+
+    for texto in penal:
+        fragmentos.append({
+            "tema": "Penal",
+            "texto": texto
+        })
+
+    # ------------------------------------------------------
+    # Mezclar registros
+    # ------------------------------------------------------
+
+    random.shuffle(fragmentos)
+
+    # ------------------------------------------------------
+    # Crear DataFrame
+    # ------------------------------------------------------
+
+    df = pd.DataFrame(fragmentos)
+
+    # ------------------------------------------------------
+    # Crear carpeta de salida
+    # ------------------------------------------------------
+
+    os.makedirs("data", exist_ok=True)
+
+    # ------------------------------------------------------
+    # Guardar CSV
+    # ------------------------------------------------------
+
+    ruta_archivo = "data/textos_juridicos.csv"
+
+    df.to_csv(
+        ruta_archivo,
+        index=False,
+        encoding="utf-8-sig"
+    )
+
+    return df
 
 
 # ==========================================================
-# Mezclar registros
+# Ejecución individual del script
+# Terminal: python src/generar_dataset.py
 # ==========================================================
 
-random.shuffle(fragmentos)
+if __name__ == "__main__":
 
+    print("=" * 50)
+    print("GENERANDO DATASET DE TEXTOS JURÍDICOS...")
+    print("=" * 50)
 
-# ==========================================================
-# Crear DataFrame
-# ==========================================================
+    df = generar_dataset()
 
-df = pd.DataFrame(fragmentos)
+    print(f"Archivo   : data/textos_juridicos.csv")
+    print(f"Registros : {len(df)}")
 
+    print()
+    print(df.head())
 
-# ==========================================================
-# Crear carpeta de salida
-# ==========================================================
-
-os.makedirs("data", exist_ok=True)
-
-
-# ==========================================================
-# Guardar dataset
-# ==========================================================
-
-ruta_archivo = "data/textos_juridicos.csv"
-
-df.to_csv(
-    ruta_archivo,
-    index=False,
-    encoding="utf-8-sig"
-)
-
-
-# ==========================================================
-# Mensaje final
-# ==========================================================
-
-print("=" * 50)
-print("DATASET GENERADO CORRECTAMENTE")
-print("=" * 50)
-print(f"Archivo : {ruta_archivo}")
-print(f"Registros : {len(df)}")
-print("=" * 50)
+    print()
+    print("Dataset generado correctamente.")

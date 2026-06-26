@@ -11,8 +11,8 @@
 # pip install -r requirements.txt
 # ==========================================================
 
-sentence-transformers==5.0.0      # Generación de embeddings semánticos con Sentence-BERT.
-scikit-learn==1.7.0               # Algoritmos de Machine Learning (KMeans y t-SNE).
-pandas==2.3.0                     # Lectura y manipulación del dataset de textos jurídicos.
-numpy==2.3.1                      # Operaciones numéricas y manejo de embeddings.
-matplotlib==3.10.3                # Visualización gráfica de los clusters generados.
+sentence-transformers==5.0.0      # pip install sentence-transformers  | Generación de embeddings semánticos mediante Sentence-BERT.
+scikit-learn==1.7.0               # pip install scikit-learn           | Algoritmos de Machine Learning (KMeans y t-SNE).
+pandas==2.3.0                     # pip install pandas                 | Lectura, escritura y manipulación del dataset de textos jurídicos.
+numpy==2.3.1                      # pip install numpy                  | Operaciones numéricas y manejo de vectores (embeddings).
+matplotlib==3.10.3                # pip install matplotlib             | Visualización gráfica de los clusters generados.

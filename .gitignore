@@ -1,0 +1,50 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos compilados
+*.so
+
+# Distribución y empaquetado
+build/
+dist/
+*.egg-info/
+
+# Caché de herramientas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Variables de entorno
+.env
+
+# Configuración de Visual Studio Code
+.vscode/
+
+# Configuración de PyCharm
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Gráficos generados
+*.png
+*.jpg
+*.jpeg
+*.svg
+
+# Modelos descargados (si se almacenan localmente)
+models/
+
+# Archivos temporales
+*.log
+*.tmp

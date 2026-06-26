@@ -1,0 +1,18 @@
+# ==========================================================
+# Proyecto: JustIA - Embeddings Semánticos
+# Actividad 4 - Caso Práctico Unidad 2
+# Especialización en Desarrollo de Software
+# Corporación Universitaria de Asturias
+#
+# Instalación de todas las dependencias:
+# pip install sentence-transformers scikit-learn pandas numpy matplotlib
+#
+# O instalar desde este archivo:
+# pip install -r requirements.txt
+# ==========================================================
+
+sentence-transformers==5.0.0      # Generación de embeddings semánticos con Sentence-BERT.
+scikit-learn==1.7.0               # Algoritmos de Machine Learning (KMeans y t-SNE).
+pandas==2.3.0                     # Lectura y manipulación del dataset de textos jurídicos.
+numpy==2.3.1                      # Operaciones numéricas y manejo de embeddings.
+matplotlib==3.10.3                # Visualización gráfica de los clusters generados.

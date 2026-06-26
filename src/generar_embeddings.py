@@ -8,7 +8,8 @@ cada fragmento en un embedding semántico. Estos embeddings
 serán utilizados posteriormente para crear agrupamientos
 temáticos mediante algoritmos de clustering.
 
-Terminal: python src/generar_embeddings.py
+Terminal:
+python src/generar_embeddings.py
 """
 
 import pandas as pd
@@ -21,8 +22,8 @@ from sentence_transformers import SentenceTransformer
 
 def generar_embeddings():
     """
-    Lee el dataset de textos jurídicos y genera un embedding
-    para cada fragmento utilizando el modelo
+    Lee el conjunto de textos jurídicos y genera un embedding
+    semántico para cada fragmento utilizando el modelo
     paraphrase-multilingual-MiniLM-L12-v2.
 
     Retorna:
@@ -34,7 +35,7 @@ def generar_embeddings():
     """
 
     # ==========================================================
-    # Leer el dataset
+    # Leer el conjunto de datos
     # ==========================================================
 
     df = pd.read_csv("data/textos_juridicos.csv")
@@ -42,13 +43,20 @@ def generar_embeddings():
     # ==========================================================
     # Cargar el modelo Sentence-BERT
     # ==========================================================
+    # Este modelo multilingüe transforma cada texto en un
+    # vector numérico (embedding) que representa su significado
+    # semántico.
+    # ==========================================================
 
     modelo = SentenceTransformer(
         "paraphrase-multilingual-MiniLM-L12-v2"
     )
 
     # ==========================================================
-    # Generar embeddings
+    # Generar los embeddings
+    # ==========================================================
+    # Se procesa cada fragmento jurídico del dataset y se
+    # obtiene un embedding para cada uno de ellos.
     # ==========================================================
 
     embeddings = modelo.encode(
@@ -57,17 +65,16 @@ def generar_embeddings():
     )
 
     # ==========================================================
-    # Agregar embeddings al DataFrame
+    # Agregar los embeddings al DataFrame
     # ==========================================================
 
     df["embedding"] = list(embeddings)
 
     # ==========================================================
-    # Retornar resultado
+    # Retornar el resultado
     # ==========================================================
 
     return df
-
 
 
 # ==========================================================
@@ -75,19 +82,18 @@ def generar_embeddings():
 # Terminal: python src/generar_embeddings.py
 # ==========================================================
 
-
 if __name__ == "__main__":
 
-    print("=" * 50)
-    print("GENERANDO EMBEDDINGS SEMÁNTICOS...")
-    print("=" * 50)
+    print("=" * 60)
+    print("GENERANDO EMBEDDINGS SEMÁNTICOS")
+    print("=" * 60)
 
+    # Obtener el DataFrame con los embeddings generados
     df = generar_embeddings()
 
-    print(f"Total de registros: {len(df)}")
-    print()
+    print(f"Total de registros procesados : {len(df)}")
 
+    print("\nPrimeros registros del conjunto de datos:\n")
     print(df[["tema", "texto"]].head())
 
-    print()
-    print("Embeddings generados correctamente.")
+    print("\nEmbeddings generados correctamente.")
